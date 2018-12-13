@@ -26,8 +26,8 @@ generateField rows columns = replicateM rows (generateRow columns)
 --iterateField::[[GemStone]] -> [[GemStone]]
 --iterateField = 
 
---replaceInListList:: (Int, Int) -> a -> [[a]] -> [[a]]
---replaceInListList = 
+replaceInListList:: (Int, Int) -> a -> [[a]] -> [[a]]
+replaceInListList (i, j) val listList = replaceInList i (replaceInList j val $ listList !! i) listList
 
 replaceInList:: Int -> a -> [a] -> [a]
 replaceInList 0 new (x:xs) = new:xs
