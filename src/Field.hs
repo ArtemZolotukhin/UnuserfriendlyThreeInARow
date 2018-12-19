@@ -24,7 +24,7 @@ generateField rows columns = replicateM rows (generateRow columns)
 --data WasChanges = Yes | No
 
 --iterateField::[[GemStone]] -> [[GemStone]]
---iterateField = 
+--iterateField =
 
 replaceInListList:: (Int, Int) -> a -> [[a]] -> [[a]]
 replaceInListList (i, j) val listList = replaceInList i (replaceInList j val $ listList !! i) listList
@@ -33,5 +33,8 @@ replaceInList:: Int -> a -> [a] -> [a]
 replaceInList 0 new (x:xs) = new:xs
 replaceInList i new list = (take i list) ++ (new:(drop (i+1) list ))
 
-
-
+swapObj:: (Int, Int) -> (Int, Int) -> [[a]] -> [[a]]
+swapObj (i1, j1) (i2, j2) gemField =
+  let
+    gem = gemField !! i1 !! j1
+    in replaceInListList (i2, j2) gem (replaceInListList (i1, j1) (gemField !! i2 !! j2) gemField) 
