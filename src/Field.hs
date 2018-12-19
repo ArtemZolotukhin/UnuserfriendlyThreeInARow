@@ -25,7 +25,7 @@ generateField rows columns = replicateM rows (generateRow columns)
 --data WasChanges = Yes | No
 
 --iterateField::[[GemStone]] -> [[GemStone]]
---iterateField gemstoneField = iter gemstoneField 
+--iterateField gemstoneField = iter gemstoneField
 
 
 --return gems to delete
@@ -38,7 +38,7 @@ iterateRow stones = iterate ([]::[Int]) 0
                                 iterate s (i+1)
                         else
                             s
-                        where 
+                        where
                             part::[GemStone]
                             part = (take 3 (drop i stones))
 
@@ -61,3 +61,15 @@ swapObj (i1, j1) (i2, j2) gemField =
   let
     gem = gemField !! i1 !! j1
     in replaceInListList (i2, j2) gem (replaceInListList (i1, j1) (gemField !! i2 !! j2) gemField)
+
+replaceInToRandom:: (Int, Int) -> [[GemStone]] -> [[GemStone]]
+replaceInToRandom (i1, j1) gemField2 =
+  let
+    gener = mkStdGen 41
+    in replaceInListList (i1, j1) (evalRand (generateGem) gener) gemField2
+
+generateTrue:: (Int)-> [[GemStone]]
+generateTrue (size) =
+  let
+    gener = mkStdGen 13
+    in evalRand (generateField size size) gener
