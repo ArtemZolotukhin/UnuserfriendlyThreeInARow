@@ -1,6 +1,6 @@
 module Gems where
 
-data GemStoneType = Red | Green | Blue | Orange | Purple
+data GemStoneType = Red | Green | Blue | Orange | Purple | Nothing
 
 data GemStone = GemStone GemStoneType
 

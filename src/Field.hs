@@ -4,6 +4,7 @@ import Gems
 import Control.Monad.Trans.Random
 import Control.Monad
 import Control.Monad.Random
+import Data.List
 
 -- instance Random GemStoneType where
 --   randomR (lo,hi) g = ...
@@ -24,7 +25,23 @@ generateField rows columns = replicateM rows (generateRow columns)
 --data WasChanges = Yes | No
 
 --iterateField::[[GemStone]] -> [[GemStone]]
---iterateField = 
+--iterateField gemstoneField = iter gemstoneField 
+
+
+--iterateFieldHorizontal::[[GemStone]] -> ([[GemStone]], [(Int, Int)])
+--iterateFieldHorizontal gemField = 
+
+iterateFieldHorizontal'::[[GemStone]] -> [(Int, Int)] -> (Int, Int) -> (Int, GemStoneType) -> ([[GemStone]], [(Int, Int)])
+iterateFieldHorizontal' gemField toDelete (x, y) (matches, gemType) = 
+    if x >= xlen then
+        iterateFieldHorizontal' gemField toDelete
+    where 
+        xlen = length gemField
+        ylen = length (gemField!!0)
+
+hUpdateToDelete::[[GemStone]] -> [(Int, Int)] -> (Int, Int) -> matches -> [(Int, Int)]
+hUpdateToDelete f toDel (x, y) m = m
+
 
 replaceInListList:: (Int, Int) -> a -> [[a]] -> [[a]]
 replaceInListList (i, j) val listList = replaceInList i (replaceInList j val $ listList !! i) listList
