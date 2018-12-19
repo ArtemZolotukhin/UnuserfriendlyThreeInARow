@@ -25,8 +25,17 @@ generateField rows columns = replicateM rows (generateRow columns)
 --data WasChanges = Yes | No
 
 --iterateField::[[GemStone]] -> [[GemStone]]
---iterateField gemstoneField = iter gemstoneField 
+--iterateField gemstoneField = 
+    
 
+
+row::[[GemStone]] -> Int -> [GemStone]
+row gemField y = iter 0 ([]::[GemStone])
+    where 
+        iter i gems = if i < (length gemField) then
+                                iter (i+1) (((gemField !! i) !! y):gems)
+                              else
+                                 gems
 
 --return gems to delete
 iterateRow::[GemStone] -> [Int]
