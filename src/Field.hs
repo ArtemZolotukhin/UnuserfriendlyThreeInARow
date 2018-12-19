@@ -12,7 +12,7 @@ import Control.Monad.Random
 -- generateGem = GemStone <$> getRandom
 
 
-generateGem::RandomGen g => Rand g GemStone
+generateGem:: RandomGen g => Rand g GemStone
 generateGem = GemStone <$> fromList [(Red,0.2),(Green,0.2),(Blue,0.2),(Orange,0.2),(Purple,0.2)]
 
 generateRow:: RandomGen g => Int -> Rand g [GemStone]
@@ -37,4 +37,4 @@ swapObj:: (Int, Int) -> (Int, Int) -> [[a]] -> [[a]]
 swapObj (i1, j1) (i2, j2) gemField =
   let
     gem = gemField !! i1 !! j1
-    in replaceInListList (i2, j2) gem (replaceInListList (i1, j1) (gemField !! i2 !! j2) gemField) 
+    in replaceInListList (i2, j2) gem (replaceInListList (i1, j1) (gemField !! i2 !! j2) gemField)
