@@ -9,7 +9,9 @@ import Data.List
 import Data.List
 import Data.Char
 
-control gm = msg1 >> getLine >>= toInt -- >>= print
+rrr = generateTrue 5
+
+control gm = replicateM_ 5 $ msg1 >> getLine >>= toInt >>= control
 	where 
 		msg1 = putStrLn "write coordinates (ex: 1 2 2 2)"
 		toInt s = do
@@ -17,4 +19,5 @@ control gm = msg1 >> getLine >>= toInt -- >>= print
 			let y = digitToInt (s !! 2) 
 			let x1 = digitToInt (s !! 4) 
 			let y1 = digitToInt (s !! 6) 
+			print $ swapObj (x, y) (x1, y1) gm
 			return (swapObj (x, y) (x1, y1) gm)
