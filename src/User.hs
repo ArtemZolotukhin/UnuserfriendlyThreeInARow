@@ -22,3 +22,5 @@ control gm = replicateM_ 5 $ printM >> msg1 >> getLine >>= toInt >>= control
 			let y1 = digitToInt (s !! 6) 
 			-- print $ swapObj (x, y) (x1, y1) gm
 			return (execField(swapObj (x, y) (x1, y1) gm))
+
+start = control rrr
