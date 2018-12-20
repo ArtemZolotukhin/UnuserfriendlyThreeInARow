@@ -24,6 +24,10 @@ generateField rows columns = replicateM rows (generateRow columns)
 
 --data WasChanges = Yes | No
 
+
+execField::[[GemStone]]->[[GemStone]]
+execField field = foldr (\(x,y) iField -> replaceInToRandom (x,y) iField) field (iterateField field)
+
 iterateField::[[GemStone]] -> [(Int, Int)]
 iterateField gemstoneField = (iterateCol [] 0) ++ (iterateR [] 0)
     where 
